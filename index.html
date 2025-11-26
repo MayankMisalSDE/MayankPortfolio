@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mayank Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --text:#111827;
+      --accent:#38bdf8;
+      --accent-2:#0ea5e9;
+      --glass: rgba(15,23,36,0.03);
+      --radius:16px;
+      --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--text);background:linear-gradient(180deg,var(--bg) 0%, #eef6ff 100%);} 
+    a{color:var(--accent);text-decoration:none}
+
+    .wrap{max-width:var(--max-width);margin:36px auto;padding:28px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:20px}
+    .nav{display:flex;gap:18px;align-items:center}
+    .nav a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
+    .nav a.cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+
+    /* HERO (single, polished block) */
+    .hero{background:linear-gradient(180deg,rgba(14,165,233,0.06),rgba(37,99,235,0.02));padding:26px;border-radius:18px;display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:center}
+
+    .hero-left{padding-right:8px}
+    h1{font-size:34px;line-height:1.02;margin:0}
+    .eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:0.6px}
+    .lead{color:var(--muted);margin-top:10px;font-size:15px}
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:11px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+    .btn-ghost{background:white;border:1px solid rgba(15,23,36,0.06)}
+
+    /* profile card */
+    .profile-card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(15,23,36,0.06);display:flex;flex-direction:column;align-items:center;text-align:center}
+    .avatar{width:120px;height:120px;border-radius:16px;background:linear-gradient(180deg,#e6f9ff,#dbefff);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:36px;color:var(--accent-2)}
+    .name{font-weight:800;margin-top:12px}
+    .role{color:var(--muted);margin-top:4px}
+    .quick-stats{display:flex;gap:10px;margin-top:14px}
+    .stat{background:var(--glass);padding:8px 12px;border-radius:10px;font-weight:700}
+
+    /* MAIN LAYOUT: sections stack and use wide cards */
+    main{margin-top:28px;display:grid;gap:22px}
+    .section{background:var(--card);padding:38px;border-radius:18px;box-shadow:0 8px 26px rgba(15,23,36,0.04);margin-top:10px}
+    .section .title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .subtle{color:var(--muted)
+    }
+
+    /* skills & badges */
+    .skill-list{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,rgba(14,165,233,0.08),rgba(37,99,235,0.04));font-weight:700;color:var(--accent-2)}
+
+    /* Projects grid */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .project{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,1), rgba(250,252,255,1));border:1px solid rgba(15,23,36,0.03)}
+    .project h4{margin:0 0 6px 0}
+    .project p{color:var(--muted);font-size:14px}
+    .project .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+    /* Experience timeline cards */
+    .exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .exp{padding:16px;border-radius:12px;border:1px solid rgba(15,23,36,0.03);background:linear-gradient(180deg,#fff,#fbfdff)}
+    .exp .period{color:var(--muted);font-weight:700}
+    .exp .company{font-weight:700;margin-top:6px}
+
+    /* Education & Extras */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(15,23,36,0.06);font-size:15px}
+    .send{background:var(--accent-2);color:white;border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer}
+
+    /* footer */
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive tweaks */
+    @media (max-width:1080px){
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .exp-grid{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+    }
+    @media (max-width:680px){
+      .projects-grid{grid-template-columns:1fr}
+    }
+
+    /* subtle interactions */
+    .project:hover{transform:translateY(-6px);transition:all .25s ease}
+    .exp:hover{transform:translateY(-4px);transition:all .25s ease}
+    .btn:active{transform:translateY(1px)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <!-- <div class="logo"></div> -->
+        <!-- <div>
+          <div style="font-weight:800">Mayank Misal</div>
+          <div style="font-size:13px;color:var(--muted)">• Aspiring Software Engineer <br>• B-Tech CSE 2026'  </div>
+        </div> -->
+      </div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact" class="cta">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="hero">
+      <div class="hero-left">
+        <div class="eyebrow">• Open to work • Actively seeking internship opportunities</div>
+        <h1>Hi, I’m <span style="background:linear-gradient(90deg,var(--accent-2),var(--accent));-webkit-background-clip:text;color:transparent;">Mayank</span><br><small style="font-size:18px;font-weight:600;color:var(--muted)">Final year Btech Computer Science Student</small></h1>
+        <p class="lead">Combining strong architectural thinking, well-designed backend workflows, and clear, streamlined interfaces to produce dependable systems that evolve gracefully with complexity.</p>
+        <div class="cta-row">
+          <a href="assets/MayankMisalDeveloperResume.docx" download="My_Resume.docx">
+          <button class="btn btn-primary" id="downloadResumeBtn">Download Resume</button>
+        </a>
+          <a class="btn btn-ghost" href="#contact">Hire me</a>
+        </div>
+
+        <div style="margin-top:20px;display:flex;gap:14px;align-items:center">
+          <div style="display:flex;flex-direction:column">
+            <div style="font-weight:800">Selected highlights</div>
+            <div class="subtle" style="margin-top:6px">3 completed projects • 2 Internship experience • Published research</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <div class="avatar">MM</div>
+        <div class="name">Mayank Misal</div>
+        <div class="role">CSE Final Year — Nagpur University</div>
+        <div class="quick-stats">
+          <div class="stat">3 Projects</div>
+          <div class="stat">2 Interships</div>
+        </div>
+        <div style="margin-top:12px;font-size:14px;color:var(--muted)">mayankmisal21@gmail.com</div>
+      </aside>
+    </section>
+
+    <main>
+      <section id="about" class="section">
+        <div class="title-row"><h3>About</h3><div class="subtle"></div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px;align-items:start">
+          <div>
+            <p class="subtle">I’m a full-stack developer with solid foundations in backend systems, database design, and frontend user experience. I’ve taken project features from requirement analysis to deployment, designed APIs with a focus on performance and reliability, and built systems using clean code principles. <BR>My work reflects a balance of practical architecture, structured problem-solving, and a strong emphasis on quality through testing and maintainable engineering practices.</p>
+
+            <div style="margin-top:18px">
+              <h4 style="margin-bottom:10px">Primary skills</h4>
+              <div class="skill-list">
+                <div class="skill">Java</div>
+                <div class="skill">Swing</div>
+                <div class="skill">Python</div>
+                <div class="skill">C</div>
+                <div class="skill">PHP</div>
+                <div class="skill">PL-SQL</div>
+
+                <div class="skill">HTML5</div>
+                 <div class="skill">CSS3</div>
+                  <div class="skill">JavaScript</div>
+                <div class="skill">DOM Manipulation</div>
+                <div class="skill">Django</div>
+                <div class="skill">MySQL</div>
+                <div class="skill">Git & GitHub</div>
+                <div class="skill">Xampp</div>
+
+                <div class="skill">OOPS</div>
+                 <div class="skill">Data Structures & Algorithms</div>
+                  <div class="skill">DBMS</div>
+                <div class="skill">Operating Systems</div>
+  
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="background:var(--glass);padding:14px;border-radius:12px">
+              <div style="font-weight:700">Education</div>
+              <div class="subtle" style="margin-top:8px">B.Tech in Computer Science — Priyadarshini College Of Engineering<br> (2022-2026)</div>
+              <hr style="border:none;border-top:1px solid rgba(15,23,36,0.04);margin:12px 0">
+              <div style="font-weight:700">Availability</div>
+              <div class="subtle" style="margin-top:8px">Open to full‑time and interships.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="title-row"><h3>Projects</h3><div class="subtle"></div></div>
+
+        <div class="projects-grid">
+
+          <!-- Project 1 -->
+          <div class="project" style="position:relative;overflow:hidden">
+            <h4>Reader Connect — Book Donation Platform</h4>
+            <p class="subtle">A peer-to-peer book donation web platform with a clean, user-friendly interface that enables users to list available books and request new ones seamlessly.</p>
+            <ul style="margin-top:8px;color:var(--muted);font-size:14px;line-height:1.5">
+              <li>User registration and secure login for donors and recipients.</li>
+              <li>Book listings with full Create, Read, Update, Delete operations.</li>
+              <li>Request tracking system for managing book donation and request statuses</li>
+              <li>Donor dashboard for easy management of donated books and requests</li>
+              
+            </ul>
+
+            <div class="tags"><span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">MySQL</span><span class="skill">JavaScript</span><span class="skill">PHP</span></div>
+
+            <div style="margin-top:14px;display:flex;gap:10px">
+              <a class="btn btn-primary" style="font-size:13px;padding:8px 12px" href="#" target="_blank">Live Demo</a>
+              <a class="btn btn-ghost" style="font-size:13px;padding:8px 12px" href="#" target="_blank">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project" style="position:relative;overflow:hidden">
+            <h4>JConnect: Java-Based Multi-Client Chat System</h4>
+            <p class="subtle">A desktop chat application supporting both single-client and multi-client modes, built using Java sockets and a Swing/AWT GUI. It enables real-time messaging over a network.</p>
+            <ul style="margin-top:8px;color:var(--muted);font-size:14px;line-height:1.5">
+              <li>Real-time text communication between clients and server using socket programming</li>
+              <li>Multi-threaded server architecture that handles multiple client connections concurrently</li>
+              <li>Intuitive GUI chat interface for seamless user interaction</li>
+            </ul>
+
+            <div class="tags"><span class="skill">Java (Core)</span><span class="skill">Java Swing</span><span class="skill">AWT</span><span class="skill">Java Socket Programming</span></div>
+
+            <div style="margin-top:14px;display:flex;gap:10px">
+              <a class="btn btn-primary" style="font-size:13px;padding:8px 12px" href="#" target="_blank">Live Demo</a>
+              <a class="btn btn-ghost" style="font-size:13px;padding:8px 12px" href="#" target="_blank">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project" style="position:relative;overflow:hidden">
+            <h4>AI TripPlanner: Intelligent Itinerary Generator</h4>
+            <p class="subtle">An AI-powered application that generates custom travel itineraries from user prompts using natural language processing. Users input travel preferences, and the system returns a personalized plan.</p>
+            <ul style="margin-top:8px;color:var(--muted);font-size:14px;line-height:1.5">
+              <li>Accepts user prompts in natural language to understand travel requirements</li>
+              <li>Dynamic itinerary creation using AI/NLP algorithms and location data</li>
+              <li>Integration of travel recommendations and smart planning for personalized experiences</li>
+            </ul>
+
+            <div class="tags"><span class="skill">Python</span><span class="skill">FastAPI</span><span class="skill">Natural Language Processing</span></div>
+
+            <div style="margin-top:14px;display:flex;gap:10px">
+              <a class="btn btn-primary" style="font-size:13px;padding:8px 12px" href="#" target="_blank">Demo Video</a>
+              <a class="btn btn-ghost" style="font-size:13px;padding:8px 12px" href="#" target="_blank">GitHub</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="title-row"><h3>Experience</h3><div class="subtle"></div></div>
+        <div class="exp-grid">
+          <div class="exp">
+            <div class="period">Sep 2025 — Nov 2025 </div>
+            <div class="company">Code Solutions Made Easy Pvt.ltd</div>
+             <div class="company">Java Intern (In Office) </div>
+            <div class="subtle" style="margin-top:8px">• Engineered a multi-threaded socket server enabling stable real-time communication across multiple clients.<br>
+            • Built a clean Swing/AWT desktop interface with event-driven message handling and modular OOP-based components.<br>
+            • Enhanced network performance by refining communication protocols and improving overall system reliability.</div>
+          </div>
+
+          <div class="exp">
+            <div class="period">March 2024 — April 2024</div>
+            <div class="company">Revat Netwoks Pvt.ltd</div>
+            <div class="company">Web Developer Intern (Remote)</div>
+            <div class="subtle" style="margin-top:8px">• Designed efficient database schemas and optimized frontend logic for smoother performance and faster load times.<br>
+            • Implemented modules using HTML, CSS, JS, PHP, and MySQL.<br>
+            • Collaborated on feature planning and backend integration to deliver a  consistent and intuitive user experience.</div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <!-- Achievements & Certifications Section -->
+      <section id="achievements" class="section">
+        <div class="title-row"><h3>Achievements & Certifications</h3><div class="subtle"></div></div>
+        <div class="two-col">
+          <div style="padding:16px;border-radius:12px;border:1px solid rgba(15,23,36,0.04);background:#fff">
+            <strong>Achievements</strong>
+            <ul style="margin-top:10px;color:var(--muted);line-height:1.55;font-size:15px">
+              <li>Secured 2nd Position in Hackathon - YCCE Nagpur</li>
+              <li>Distinguish Coder in Coding Relay InterCollege Event</li>
+                 <li>Top performer in VNIT-Nagpur Mock Parliament</li>
+              <li>Participated in InterCollege Debate Competetion</li>
+           
+              <li>Documentation Member of National Service Scheme</li>
+            </ul>
+          </div>
+
+          <div style="padding:16px;border-radius:12px;border:1px solid rgba(15,23,36,0.04);background:#fff">
+            <strong>Certifications</strong>
+            <ul style="margin-top:10px;color:var(--muted);line-height:1.55;font-size:15px">
+              <li>Java Programming Certification</li>
+              <li>Python Certification</li>
+              <li>Web Development</li>
+              <li>Computer Networks - NPTEL</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+  
+
+      <section id="contact" class="section">
+        <div class="title-row"><h3>Contact</h3><div class="subtle">Let’s build something together</div></div>
+        <div class="contact-grid">
+          <form id="contactForm">
+            <input id="name" placeholder="Your name" required />
+            <input id="email" placeholder="Your Email" required />
+            <input id="subject" placeholder="Subject" />
+            <textarea id="message" rows="6" placeholder="Tell me about the role or project" required></textarea>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <button type="submit" class="send">Send message</button>
+              <button type="button" class="btn btn-ghost" id="copyEmail">Copy email</button>
+            </div>
+          </form>
+
+          <aside style="padding:16px;border-radius:12px;background:var(--glass);align-self:start">
+            <div style="font-weight:700">Get in touch</div>
+            <div class="subtle" style="margin-top:8px">mayankmisal21@gmail.com</div>
+            <div class="subtle" style="margin-top:6px">LinkedIn:  <a href="https://www.linkedin.com/in/mayank-misal-3aa9b4329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank" style="color:inherit; text-decoration:underline;">
+              linkedin.com/in/mayankmisal
+              </a></div>
+            <div class="subtle" style="margin-top:6px">/div>
+            <div style="margin-top:12px"><strong>Location</strong><div class="subtle">Ready to relocate  - India</div></div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>© <span id="year"></span> Mayank Misal — Designed for reach and contribution</footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const resumeUrl = 'resume.pdf';
+    document.getElementById('downloadResumeBtn').addEventListener('click', ()=> window.open(resumeUrl,'_blank'));
+    document.getElementById('copyEmail').addEventListener('click', ()=>{navigator.clipboard.writeText('you@domain.com').then(()=>alert('Email copied'))});
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const mailto = `mailto:you@domain.com?subject=${encodeURIComponent(subject||'Portfolio contact from '+name)}&body=${encodeURIComponent('Name: '+name+'Email: '+email+''+message)}`;     window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>
